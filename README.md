@@ -104,9 +104,8 @@ cd flappyneo
 
 You can checkout the live game here:
 
-```
-https://flappyneo.vercel.app
-```
+
+[https://flappyneo.vercel.app/](https://flappyneo.vercel.app/)
 
 ---
 
