@@ -85,13 +85,13 @@ Play as **Neo**, a glowing cyber orb, and glide through neon towers while chasin
 1. Download or clone this repo:
 
 ```bash
-git clone https://github.com/YourUserName/flappy-neo.git
+git clone https://github.com/YourUserName/flappyneo.git
 ```
 
 2. Open the folder:
 
 ```bash
-cd flappy-neo
+cd flappyneo
 ```
 
 3. Just open **index.html** in your browser.
