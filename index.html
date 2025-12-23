@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 🔥 SEO TITLE -->
+    <title>Flappy Neo - Futuristic Flappy Game</title>
+
+    <!-- 🔍 META DESCRIPTION (SEO) -->
+    <meta name="description" content="Flappy Neo is a futuristic neon-style tap-to-fly game inspired by Flappy Bird. Dodge obstacles, glide through neon tunnels, and challenge your high score!">
+
+    <!-- 🔑 SEO KEYWORDS -->
+    <meta name="keywords" content="Flappy Neo, flappy bird game, futuristic flappy, neon game, tap to fly, drone flappy game, neon arcade, cyber flappy, web game, browser game">
+
+    <!-- 📱 MOBILE THEME COLOR -->
+    <meta name="theme-color" content="#00ffff">
+
+    <!-- 🟦 OPEN GRAPH (SOCIAL MEDIA PREVIEW) -->
+    <meta property="og:title" content="Flappy Neo - Futuristic Flappy Game">
+    <meta property="og:description" content="A neon cyberpunk twist on Flappy Bird. Fly Neo through futuristic obstacles and beat your high score.">
+    <meta property="og:image" content="/favicon.png"> <!-- Replace with full URL when deployed -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flappyneo.vercel.app">
+
+    <!-- 🐦 TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flappy Neo - Futuristic Flappy Game">
+    <meta name="twitter:description" content="Dodge neon obstacles and challenge your skills in this futuristic flappy-style game.">
+    <meta name="twitter:image" content="/favicon.png"> <!-- Replace with full URL -->
+
+    <!-- 🟣 FAVICON -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <!-- 🎨 FONTS + CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <div id="overlay">
+
+        <!-- START SCREEN -->
+        <div id="startScreen">
+            <h1>Flappy Neo</h1>
+            <p>Tap / Space to start</p>
+            <p>Press M to toggle OG / Drone Mode</p>
+            <p>OG High Score: <span id="ogHighScoreDisplay">0</span></p>
+            <p>Drone High Score: <span id="droneHighScoreDisplay">0</span></p>
+        </div>
+
+        <!-- GAME OVER SCREEN -->
+        <div id="gameOverScreen" class="hidden">
+            <h1>NEO CRASHED</h1>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <p>OG High Score: <span id="finalOgHighScore">0</span></p>
+            <p>Drone High Score: <span id="finalDroneHighScore">0</span></p>
+            <p>Current Mode: <span id="currentModeDisplay">OG</span></p>
+            <p>Tap / Space to Reboot</p>
+            <p>Press M to switch mode</p>
+        </div>
+
+        <!-- SCORE DISPLAY -->
+        <div id="scoreDisplay" class="hidden">SCORE: 0</div>
+    </div>
+
+    <!-- 🔊 AUDIO CONTROL BUTTON (BOTTOM RIGHT) -->
+    <div id="audioControl">
+        <div id="audioButton">🔊</div>
+
+        <div id="audioPanel" class="hidden">
+            <label>
+                <input type="checkbox" id="toggleMusic" checked>
+                Music
+            </label>
+
+            <label>
+                <input type="checkbox" id="toggleSfx" checked>
+                Sound FX
+            </label>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

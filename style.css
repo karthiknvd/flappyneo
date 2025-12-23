@@ -1,0 +1,178 @@
+/* style.css - Updated with no glow on score display */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Rajdhani', sans-serif;
+    color: #00ffff;
+    user-select: none;
+}
+
+#gameContainer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+}
+
+#gameCanvas {
+    display: block;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 */
+    background: #000;
+    box-shadow: 0 0 80px rgba(0, 255, 255, 0.4);
+}
+
+@media (orientation: portrait) {
+    #gameCanvas {
+        width: 177.78vh;
+        height: 100vh;
+    }
+}
+
+#overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#overlay > div {
+    pointer-events: all;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2.5rem 4rem;
+    border-radius: 30px;
+    border: 3px solid rgba(0, 255, 255, 0.7);
+    box-shadow: 0 0 60px rgba(0, 255, 255, 0.5);
+    max-width: 90%;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 10vmin, 7rem);
+    background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glowShift 3s ease-in-out infinite alternate;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes glowShift {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(180deg); }
+}
+
+p {
+    font-size: clamp(1.2rem, 4vmin, 2.2rem);
+    margin: 0.8rem 0;
+}
+
+/* Score display with glow removed */
+#scoreDisplay {
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 6vmin, 3.5rem);
+    font-weight: 900;
+    color: #ff00ff;
+    text-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ---------------------------------------------------
+   🎧 AUDIO CONTROL (Bottom Right Corner)
+--------------------------------------------------- */
+
+#audioControl {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99999;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Volume Button */
+#audioButton {
+    background: rgba(0, 255, 255, 0.2);
+    border: 2px solid #00ffff;
+    padding: 6px 10px;     /* reduced padding */
+    border-radius: 10px;   /* smaller roundness */
+    cursor: pointer;
+    font-size: 18px;       /* smaller icon */
+    color: #00ffff;
+    transition: 0.2s;
+    backdrop-filter: blur(6px);
+    text-align: center;
+}
+
+#audioButton:hover {
+    background: rgba(0, 255, 255, 0.35);
+}
+
+/* Settings Panel */
+#audioPanel {
+    margin-top: 10px;
+    background: rgba(0, 0, 33, 0.85);
+    border: 2px solid #00ffff;
+    padding: 14px;
+    border-radius: 14px;
+    width: 150px;
+    backdrop-filter: blur(8px);
+    color: #00ffff;
+    animation: fadeIn 0.2s ease-out;
+}
+
+#audioPanel.hidden {
+    display: none;
+}
+
+#audioPanel label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#audioPanel input[type="checkbox"] {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+/* Smooth fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
