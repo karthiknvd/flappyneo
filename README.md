@@ -121,6 +121,16 @@ Google Actions Free SFX Library
 
 ---
 
+## ☕ Support
+
+If this project helped you or inspired your work:
+
+👉 **Buy me a coffee:** https://buymeacoffee.com/webnate
+
+Every bit of support helps keep projects like this open-source and evolving.
+
+---
+
 ## 📘 License
 
 This project is free for personal or portfolio use.
