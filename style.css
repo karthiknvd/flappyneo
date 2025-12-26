@@ -171,6 +171,8 @@ p {
     cursor: pointer;
 }
 
+
+
 /* Smooth fade animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
