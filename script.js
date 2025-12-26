@@ -75,6 +75,7 @@ const ctx = canvas.getContext('2d');
 let width, height;
 let player = {};
 let gapMin, obstacleWidth, obstacleSpacing, currentGap;
+let lastTime = performance.now();
 
 function resizeCanvas() {
     width = canvas.width = canvas.clientWidth;
@@ -254,7 +255,7 @@ function generateStaticPattern(seed) {
     return pattern;
 }
 
-function update() {
+function update(dt) {
     if (gameState === 'start') {
         player.y = height / 2 + Math.sin(Date.now() / 350) * 25;
         render();
@@ -264,8 +265,9 @@ function update() {
     if (gameState !== 'playing') return;
 
     if (gameMode === 'OG') {
-        player.vy += GRAVITY;
-        player.y += player.vy;
+        player.vy += GRAVITY * dt;
+        player.y += player.vy * dt;
+
         player.vy *= 0.985;
     } else if (gameMode === 'DRONE') {
         if (keys.w) player.vy -= DRONE_ACCEL;
@@ -279,8 +281,9 @@ function update() {
         if (!keys.a && !keys.d) player.vx *= DRONE_FRICTION;
         if (!keys.w && !keys.s) player.vy *= DRONE_FRICTION;
 
-        player.x += player.vx;
-        player.y += player.vy;
+        player.x += player.vx * dt;
+        player.y += player.vy * dt;
+
 
         const rightWallX = width * DRONE_RIGHT_WALL - player.radius;
         player.x = Math.max(player.radius, Math.min(rightWallX, player.x));
@@ -305,7 +308,7 @@ function update() {
         effectiveSpeed += forwardVelocityBoost;
     }
 
-    obstacles.forEach(o => o.x -= effectiveSpeed);
+    obstacles.forEach(o => o.x -= effectiveSpeed * dt);
 
     if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < width - obstacleSpacing) {
         spawnObstacle();
@@ -329,7 +332,7 @@ function update() {
 
             document.getElementById('scoreDisplay').textContent = `SCORE: ${score}`;
             document.getElementById('finalScore').textContent = score;
-            gameSpeed += 0.20;
+            gameSpeed += 0.20 * dt;
             currentGap = Math.max(gapMin, currentGap - 4.5);
         }
     });
@@ -540,9 +543,13 @@ function render() {
     if (shakeAmount > 0) ctx.restore();
 }
 
-function loop() {
-    update();
+function loop(time) {
+    const deltaTime = (time - lastTime) / 16.666; // normalize to 60fps
+    lastTime = time;
+
+    update(deltaTime);
     render();
+
     requestAnimationFrame(loop);
 }
 
